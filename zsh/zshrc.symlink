@@ -16,14 +16,14 @@ fi
 typeset -U config_files
 config_files=($ZSH/**/*.zsh)
 
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}
+# load the path files - skip zshplugins
+for file in ${${(M)config_files:#*/path.zsh}:#*/zshplugins/*}
 do
   source $file
 done
 
-# load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+# load everything but the path and completion files - skip zshplugins!
+for file in ${${${config_files:#*/path.zsh}:#*/completion.zsh}:#*/zshplugins/*}
 do
   source $file
 done
@@ -32,8 +32,8 @@ done
 autoload -U compinit
 compinit
 
-# load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}
+# load every completion after autocomplete loads - skip zshplugins
+for file in ${${(M)config_files:#*/completion.zsh}:#*/zshplugins/*}
 do
   source $file
 done
