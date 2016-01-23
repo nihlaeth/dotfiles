@@ -25,3 +25,6 @@
 [submodule "vimplugins/vimbed"]
 	path = vimplugins/vimbed
 	url = https://github.com/ardagnir/vimbed.git
+[submodule "zshplugins/zsh-git-prompt"]
+	path = zshplugins/zsh-git-prompt
+	url = https://github.com/olivierverdier/zsh-git-prompt.git
