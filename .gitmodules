@@ -1,0 +1,24 @@
+[submodule "vimplugins/syntastic"]
+	path = vimplugins/syntastic
+	url = https://github.com/scrooloose/syntastic
+[submodule "vimplugins/vim-abolish"]
+	path = vimplugins/vim-abolish
+	url = https://github.com/tpope/vim-abolish.git
+[submodule "vimplugins/Vundle.vim"]
+	path = vimplugins/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule "vimplugins/vim-repeat"]
+	path = vimplugins/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "vimplugins/vim-dispatch"]
+	path = vimplugins/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
+[submodule "vimplugins/vimoutliner"]
+	path = vimplugins/vimoutliner
+	url = https://github.com/vimoutliner/vimoutliner.git
+[submodule "vimplugins/vim-surround"]
+	path = vimplugins/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vimplugins/vim-test"]
+	path = vimplugins/vim-test
+	url = https://github.com/janko-m/vim-test.git
