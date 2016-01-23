@@ -50,3 +50,6 @@ bindkey '^?' backward-delete-char
 
 # kill longer timeout between mode switching
 export KEYTIMEOUT=1
+
+# fix problems with smiley
+export LC_ALL="en_US.UTF-8"
