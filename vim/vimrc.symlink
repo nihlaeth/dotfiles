@@ -1,4 +1,68 @@
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+  " let Vundle manage Vundle
+  "  " required! 
+Bundle 'gmarik/vundle'
+
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-dispatch'
+Bundle 'vimoutliner/vimoutliner'
+Bundle 'ardagnir/vimbed'
+Bundle 'chikamichi/mediawiki.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/syntastic'
+Bundle 'janko-m/vim-test'
+
+" Highlight todo and fixme
+syn match myTodo contained "//\(todo\|fixme\)"
+hi def link myTodo Todo
+
 syntax on
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+set tabstop=8
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+
+nmap \w :w<CR>
+nmap \q :q<CR>
+nmap \e :wq<CR>
+nmap \t :q!
+nmap \n :wn<CR>
+
+" no idea what I put this in for, but it's probably here for a reason
+:au BufWinEnter *.py let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
+:au BufWinEnter *.py let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+
+" line numbers
+set number
+set numberwidth=2
+
+
+" Syntastic setup - static syntax checking
+let g:syntastic_python_checkers = ['pylint', 'pep8', 'pep257']
+let g:syntastic_cpp_checkers = ['cpplint']
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_cpplint_exec = 'cpplint'
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
+
+" Python testing
+let test#python#runner = 'nose'
+let test#strategy = 'dispatch'
+let test#python#nose#options = {
+            \ 'suite': '-x --nologcapture',
+            \ 'nearest': '-x --nologcapture',
+            \ 'file': '-x --nologcapture',
+            \}
