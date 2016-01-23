@@ -28,3 +28,6 @@
 [submodule "zshplugins/zsh-git-prompt"]
 	path = zshplugins/zsh-git-prompt
 	url = https://github.com/olivierverdier/zsh-git-prompt.git
+[submodule "zshplugins/zsh-syntax-highlighting"]
+	path = zshplugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
