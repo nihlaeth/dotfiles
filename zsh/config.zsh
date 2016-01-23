@@ -47,3 +47,6 @@ bindkey '^[[5C' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^[^N' newtab
 bindkey '^?' backward-delete-char
+
+# kill longer timeout between mode switching
+export KEYTIMEOUT=1
