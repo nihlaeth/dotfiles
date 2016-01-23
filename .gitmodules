@@ -22,3 +22,6 @@
 [submodule "vimplugins/vim-test"]
 	path = vimplugins/vim-test
 	url = https://github.com/janko-m/vim-test.git
+[submodule "vimplugins/vimbed"]
+	path = vimplugins/vimbed
+	url = https://github.com/ardagnir/vimbed.git
