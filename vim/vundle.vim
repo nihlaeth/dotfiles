@@ -1,18 +1,23 @@
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
   " let Vundle manage Vundle
   "  " required! 
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-dispatch'
-Bundle 'vimoutliner/vimoutliner'
-Bundle 'ardagnir/vimbed'
-Bundle 'chikamichi/mediawiki.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/syntastic'
-Bundle 'janko-m/vim-test'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-dispatch'
+Plugin 'vimoutliner/vimoutliner'
+Plugin 'ardagnir/vimbed'
+Plugin 'chikamichi/mediawiki.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/syntastic'
+Plugin 'janko-m/vim-test'
 
-
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
