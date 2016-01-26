@@ -31,3 +31,6 @@
 [submodule "zshplugins/zsh-syntax-highlighting"]
 	path = zshplugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "vimplugins/nerdcommenter"]
+	path = vimplugins/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git

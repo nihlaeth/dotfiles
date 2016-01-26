@@ -17,6 +17,7 @@ Plugin 'chikamichi/mediawiki.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'janko-m/vim-test'
+Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
