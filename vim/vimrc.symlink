@@ -26,3 +26,10 @@ nmap \n :wn<CR>
 " line numbers
 set number
 set numberwidth=2
+
+" Wrapping
+set wrap              " Wrap lines to textwidth
+" set breakindent       " Wrapped lines should be indented, too.
+set showbreak=..       " Show a small indent marker
+set lbr               " If we do wrap, we want it at word boundaries
+set display=lastline  " Show all of the last line that fits
