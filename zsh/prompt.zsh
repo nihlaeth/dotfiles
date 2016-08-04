@@ -5,6 +5,16 @@ autoload colors && colors
 # load git status
 source $HOME/.dotfiles/zshplugins/zsh-git-prompt/zshrc.sh
 
+# load hg status
+function hg_super_status {
+    hg prompt --angle-brackets "\
+<on %{$fg[magenta]%}<branch>%{$reset_color%}>\
+<|%{$fg[green]%}<bookmark>%{$reset_color%}>\
+< at %{$fg[yellow]%}<rev>%{$reset_color%}>\
+< %{$fg[yellow]%}(<tags|%{$reset_color%}, %{$fg[yellow]%}>)%{$reset_color%}>\
+%{$fg[green]%}<status|modified|unknown><update>%{$reset_color%}" 2>/dev/null
+}
+
 directory_name() {
   echo "%0{$fg_bold[cyan]%}%0d%0{$reset_color%}"
 }
@@ -29,7 +39,7 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-export PROMPT=$'\n$(user_name) : $(directory_name) $(git_super_status)\n$(smile) # '
+export PROMPT=$'\n$(user_name) : $(directory_name) $(hg_super_status)$(git_super_status)\n$(smile) # '
 
 set_prompt () {
   export RPROMPT="%0{$fg_bold[cyan]%}%0{$reset_color%} %?"
