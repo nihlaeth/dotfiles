@@ -1,7 +1,7 @@
 # hg version: 3.7.1
 [ui]
 
-username = nihlaeth
+username = nihlaeth <info@nihlaeth.nl>
 verbose = False
 ignore = ~/.hgignore
 editor = vim
