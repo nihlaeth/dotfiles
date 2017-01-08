@@ -24,7 +24,6 @@ nmap \n :wn<CR>
 nmap \c m`lb~``
 
 " title
-" select block mode will not work
 let g:modestr={
     \ 'n': 'Normal',
     \ 'no': 'Normal - operator pending',
@@ -33,7 +32,7 @@ let g:modestr={
     \ '': 'Visual[block]',
     \ 's': 'Select[char]',
     \ 'S': 'Select[line]',
-    \ '^S': 'Select[block]',
+    \ '': 'Select[block]',
     \ 'i': 'Insert',
     \ 'R': 'Replace',
     \ 'Rv': 'Replace - virtual',
