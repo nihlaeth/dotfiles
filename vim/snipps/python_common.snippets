@@ -260,6 +260,17 @@ def replace_docstring(snip, test=False):
 	# vim.command('normal j')
 	snip.expand_anon(generate_anon_docstring(content))
 
+def expand_elif(snip):
+	text = []
+	tabstop = 1
+	for _ in range(int(snip.buffer[snip.line].strip())):
+		text.append("elif ${%d:condition}:" % tabstop)
+		tabstop += 1
+		text.append("	    ${%d:pass}" % tabstop)
+		tabstop += 1
+	snip.buffer[snip.line] = ""
+	snip.expand_anon('\n'.join(text))
+
 endglobal
 
 ###############
@@ -275,6 +286,12 @@ if snip.indent:
 snip >> 1
 write_function_docstring(snip, get_args(t[2])) `
 	${5:${VISUAL:pass}}
+endsnippet
+
+snippet def_ "private function" bms
+def _${1:function}(`!p
+	snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}):
+	${3:${VISUAL:pass}}
 endsnippet
 
 #############
@@ -296,12 +313,188 @@ write_init_body(get_args(t[4]), t[2], snip)`
 $0
 endsnippet
 
+#############################
+#  dragonfly grammar rules  #
+#############################
+
+snippet map "dragonfly.MappingRule" bms
+class ${1:Some}Rule(MappingRule):
+
+	"""${2:TODO}."""
+${4:	    
+	exported = ${5:False}}
+
+	def __init__(self, *args, **kwargs):
+		self.mapping = {
+			${3:_("command"): "value",}
+			}
+		$0
+		MappingRule.__init__(self, *args, **kwargs)
+endsnippet
+
+snippet compound "dragonfly.CompoundRule" bms
+class ${1:Some}Rule(CompoundRule):
+
+	"""${2:TODO}."""
+${9:	    
+	exported = ${10:False}}
+
+	def __init__(self, *args, **kwargs):
+		self.spec = _("${3:command}")
+		self.extras = [
+			${4:Alternative()}
+			]
+		$0
+		CompoundRule.__init__(self, *args, **kwargs)
+
+	def value(self, node):
+		extras = extract_values(node, (
+			${5:SomeRule}), recurse=True)
+		${6:extras = ' '.join(extras)}
+		return ${7:text_to_keystr(extras)}
+
+	def _process_recognition(self, node, extras):
+		${8:Key(self.value(node)).execute()}
+endsnippet
+
+snippet choice "dragonfly.Choice" bms
+Choice(name='${1:identifier}', choices={
+	${2:_("${3:spoken text}"): "${4:value}",}$0
+	})
+endsnippet
+
+snippet sequence "dragonfly.Sequence" bms
+Sequence(name='${1:identifier}', children=(
+	${3:_("${4:spoken text}"),}$0
+	))
+endsnippet
+
+snippet alternative "dragonfly.Alternative" bms
+Alternative(name='${1:identifier}', children=(
+	${3:RuleRef(rule=${4:SomeRule}()),}$0
+	))
+endsnippet
+
+snippet optional "dragonfly.Optional" bms
+Optional(
+	name='${1:identifier}',
+	child=${2:RuleRef(rule=${3:SomeRule}())})
+endsnippet
+
+snippet repetition "dragonfly.Repetition" bms
+Repetition(
+	name='${1:identifier}',
+	child=${2:RuleRef(rule=${3:SomeRule}())},
+	min=${4:1},
+	max=${5:5})
+endsnippet
+
+snippet literal "dragonfly.Literal" bms
+Literal(name='${1:identifier}', text=_('${2:text}'))
+endsnippet
+
+snippet /rule ref/ "dragonfly.RuleRef" bms
+RuleRef(name='${1:identifier}', rule=${2:SomeRule}())
+endsnippet
+
+snippet /list ref/ "dragonfly.ListRef" bms
+ListRef(name='${1:identifier}', list=${2:[]})
+endsnippet
+
+snippet /dict ref/ "dragonfly.DictListRef" bms
+DictListRef(name='${1:identifier}', dict=${3:\{\}})
+endsnippet
+
+snippet dictation "dragonfly.Dictation" bms
+Dictation(name='${1:identifier}')
+endsnippet
+
+snippet _ "gettext translation key, value pair" bms
+_("${1:translatable}"): "${2:value}",
+endsnippet
+
 ################
 #  docstrings  #
 ################
 
+snippet #! "Start of module doc" bms
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+${1:Short summary.}
+
+${2:Longer summary.}${3:
+
+Examples
+--------
+
+..doctest::
+
+	>> ${4:test}}
+"""
+endsnippet
+
 # seriously buggy, get really confused if you trigger it
-# on the opening triple quote
+# on the opening triple quote (negative indents)
 pre_expand "replace_docstring(snip)"
 snippet """ "edit docstring" "replace_docstring(snip, True)" bems
+endsnippet
+
+# also buggy
+snippet " "Simple docstring" bms
+"""`!p if '\n' in t[1]: snip += ""`${1:Text.}`!p if '\n' in t[1]: snip += ""`"""
+endsnippet
+
+###########
+#  loops  #
+###########
+snippet for "for loop" bs
+for ${1:name} in ${2:iterator}:
+	${3:${VISUAL:pass}}
+endsnippet
+
+snippet fori "for loop enumerated" bs
+for i, ${1:name} in enumerate(${2:iterator}):
+	${3:${VISUAL:pass}}
+endsnippet
+
+snippet listc "list comprehension" bs
+[${1:${VISUAL:value}} for ${2:name} in ${3:iterator}${4: if ${5:condition}}]
+endsnippet
+
+snippet dictc "dict comprehension" bs
+{${1:${VISUAL:key}}:${2:value} for ${3:name} in ${4:iterator}${5: if ${6:condition}}}
+endsnippet
+
+################
+#  exceptions  #
+################
+
+snippet try "try: ... except: ..." bms
+try:
+	${1:${VISUAL:pass}}
+except ${2:Exception} as ${3:error}:
+	${4:raise error}${5:
+else:
+	${6:pass}}${7:
+finally:
+	${8:pass}}
+endsnippet
+
+snippet if "if: ... elif: ... else: ..." bms
+if ${1:condition}:
+	${2:${VISUAL:pass}}${3:
+elif ${4:condition}:
+	${5:pass}${6:
+elif ${7:condition}:
+	${8:pass}${9:
+elif ${10:condition}:
+	${11:pass}}}}${12:
+else:
+	${13:pass}}
+endsnippet
+
+post_jump "if snip.tabstop == 0: expand_elif(snip)"
+snippet /elif(\d+)/ "elif chain" rbms
+`!p snip.rv = match.group(1)`
 endsnippet
