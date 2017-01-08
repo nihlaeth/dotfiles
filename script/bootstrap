@@ -148,9 +148,18 @@ install_vimplugins () {
     done
 }
 
+install_vimsnippets () {
+    info 'installing vim snippets'
+    local overwrite_all=false backup_all=false skip_all=false
+
+    link_file "$DOTFILES_ROOT/vim/snipps" "$HOME/.vim/snipps"
+}
+
+
 setup_gitconfig
 install_dotfiles
 install_vimplugins
+install_vimsnippets
 
 echo ''
 echo '  All installed!'

@@ -23,6 +23,30 @@ nmap \n :wn<CR>
 " capitalization
 nmap \c m`lb~``
 
+" title
+" select block mode will not work
+let g:modestr={
+    \ 'n': 'Normal',
+    \ 'no': 'Normal - operator pending',
+    \ 'v': 'Visual[char]',
+    \ 'V': 'Visual[line]',
+    \ '': 'Visual[block]',
+    \ 's': 'Select[char]',
+    \ 'S': 'Select[line]',
+    \ '^S': 'Select[block]',
+    \ 'i': 'Insert',
+    \ 'R': 'Replace',
+    \ 'Rv': 'Replace - virtual',
+    \ 'c': 'CL',
+    \ 'cv': 'CL[vim-ex]',
+    \ 'ce': 'CL[ex]',
+    \ 'r': 'Prompt[enter]',
+    \ 'rm': 'Prompt[more]',
+    \ 'r?': 'Prompt[confirm]',
+    \ '!': 'External',
+    \ }
+set title
+set titlestring=%{hostname()}\ VIM\ %{expand(\"%y\")}\ [%{&ft}]\ mode:%{g:modestr[mode()]}
 
 " no idea what I put this in for, but it's probably here for a reason
 :au BufWinEnter *.py let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
@@ -88,5 +112,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.midi,*.mid,*.png,*.pdf
 let g:ctrlp_working_path_mode = 'ra'
 
 let g:UltiSnipsExpandTrigger=",s"
+let g:UltiSnipsListSnippets=",l"
 let g:UltiSnipsJumpForwardTrigger=",f"
 let g:UltiSnipsJumpBackwardTrigger=",b"
+let g:UltiSnipsEditSplit = "horizontal"
+let g:UltiSnipsSnippetDirectories = ["UltiSnips", "snipps"]
