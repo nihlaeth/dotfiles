@@ -88,5 +88,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.midi,*.mid,*.png,*.pdf
 let g:ctrlp_working_path_mode = 'ra'
 
 let g:UltiSnipsExpandTrigger=",s"
+let g:UltiSnipsListSnippets=",l"
 let g:UltiSnipsJumpForwardTrigger=",f"
 let g:UltiSnipsJumpBackwardTrigger=",b"
+let g:UltiSnipsEditSplit = "horizontal"
+let g:UltiSnipsSnippetDirectories = ["UltiSnips", "snipps"]
