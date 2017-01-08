@@ -1,8 +1,12 @@
-source $HOME/.dotfiles/vim/vundle.vim " this has to go first!
+"source $HOME/.dotfiles/vim/vundle.vim " this has to go first!
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
 source $HOME/.dotfiles/vim/todo.vim
 source $HOME/.dotfiles/vim/syntastic.vim
 source $HOME/.dotfiles/vim/test.vim
 
+let python_highlight_all=1
 syntax on
 
 set tabstop=8
@@ -16,12 +20,16 @@ nmap \e :wq<CR>
 nmap \t :q!
 nmap \n :wn<CR>
 
+" capitalization
+nmap \c m`lb~``
+
+
 " no idea what I put this in for, but it's probably here for a reason
 :au BufWinEnter *.py let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
 :au BufWinEnter *.py let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 " automatically compile lilypond files at save
-:autocmd BufWritePost *.ly !lilypond %
+:autocmd BufWritePost *.ly !lilypond --include=$HOME/.voicetrainer/include %
 
 " line numbers
 set number
@@ -33,3 +41,52 @@ set wrap              " Wrap lines to textwidth
 set showbreak=..       " Show a small indent marker
 set lbr               " If we do wrap, we want it at word boundaries
 set display=lastline  " Show all of the last line that fits
+
+" Fuck you, DRagon. If I can't enter a plus sign, I'll define a vim alias to
+" enter one for me.
+abbr pp +
+
+" folding
+nnoremap <space> za
+" set foldminlines=3
+" set foldmethod=indent
+
+" whitespace
+set list
+set listchars=tab:▸\ ,nbsp:·,trail:⬟,extends:❯,precedes:❮
+
+" colorschema
+syntax enable
+set background=dark
+" let g:solarized_termtrans=0
+" colorscheme solarized
+colorscheme molokai
+" colorscheme jellybeans
+"
+" Simplyfold
+let g:SimpylFold_docstring_preview = 1
+
+" completion
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"python with virtualenv support
+let g:ycm_python_binary_path = 'python'
+
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.midi$', '\.png$', '\.pdf$'] "ignore files in NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let g:airline_theme='molokai'
+let g:airline_powerline_fonts = 1
+set laststatus=2 " Always display the statusline in all windows
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+" control p
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.midi,*.mid,*.png,*.pdf
+let g:ctrlp_working_path_mode = 'ra'
+
+let g:UltiSnipsExpandTrigger=",s"
+let g:UltiSnipsJumpForwardTrigger=",f"
+let g:UltiSnipsJumpBackwardTrigger=",b"

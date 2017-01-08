@@ -33,6 +33,9 @@ setopt INC_APPEND_HISTORY  # adds history incrementally
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
 
+# support 256 colors
+export TERM=xterm-256color
+
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
 setopt complete_aliases

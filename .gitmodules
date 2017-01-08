@@ -22,15 +22,60 @@
 [submodule "vimplugins/vim-test"]
 	path = vimplugins/vim-test
 	url = https://github.com/janko-m/vim-test.git
-[submodule "vimplugins/vimbed"]
-	path = vimplugins/vimbed
-	url = https://github.com/ardagnir/vimbed.git
 [submodule "zshplugins/zsh-git-prompt"]
 	path = zshplugins/zsh-git-prompt
 	url = https://github.com/olivierverdier/zsh-git-prompt.git
 [submodule "zshplugins/zsh-syntax-highlighting"]
 	path = zshplugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "vimplugins/SimpylFold"]
+	path = vimplugins/SimpylFold
+	url = https://github.com/tmhedberg/SimpylFold.git
 [submodule "vimplugins/nerdcommenter"]
 	path = vimplugins/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "vimplugins/vim-colors-solarized"]
+	path = vimplugins/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "vimplugins/molokai"]
+	path = vimplugins/molokai
+	url = https://github.com/tomasr/molokai.git
+[submodule "vimplugins/jellybeans.vim"]
+	path = vimplugins/jellybeans.vim
+	url = https://github.com/nanotech/jellybeans.vim.git
+[submodule "vimplugins/indentpython.vim"]
+	path = vimplugins/indentpython.vim
+	url = https://github.com/vim-scripts/indentpython.vim.git
+[submodule "vimplugins/YouCompleteMe"]
+	path = vimplugins/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "vimplugins/nerdtree"]
+	path = vimplugins/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vimplugins/vim-airline"]
+	path = vimplugins/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "vimplugins/vim-airline-themes"]
+	path = vimplugins/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "vimplugins/ctrlp.vim"]
+	path = vimplugins/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "vimplugins/vim-fugitive"]
+	path = vimplugins/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vimplugins/vim-pathogen"]
+	path = vimplugins/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "vimplugins/vim-signify"]
+	path = vimplugins/vim-signify
+	url = https://github.com/mhinz/vim-signify.git
+[submodule "vimplugins/vim-help-random"]
+	path = vimplugins/vim-help-random
+	url = https://github.com/motemen/vim-help-random.git
+[submodule "vimplugins/ultisnips"]
+	path = vimplugins/ultisnips
+	url = git://github.com/SirVer/ultisnips.git
+[submodule "vimplugins/vim-snippets"]
+	path = vimplugins/vim-snippets
+	url = git://github.com/honza/vim-snippets.git
