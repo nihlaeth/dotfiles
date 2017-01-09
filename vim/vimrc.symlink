@@ -23,6 +23,9 @@ nmap \n :wn<CR>
 " capitalization
 nmap \c m`lb~``
 
+" fill empty messages for po files
+autocmd FileType po nmap <buffer> <C-K> :%s/\v^msgid "((\\"\|[^"])*)"\nmsgstr "\zs\ze"$/\1/g<CR>
+
 " title
 let g:modestr={
     \ 'n': 'Normal',
