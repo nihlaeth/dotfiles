@@ -79,3 +79,6 @@
 [submodule "vimplugins/vim-snippets"]
 	path = vimplugins/vim-snippets
 	url = git://github.com/honza/vim-snippets.git
+[submodule "vimplugins/Vim-Jinja2-Syntax"]
+	path = vimplugins/Vim-Jinja2-Syntax
+	url = git@github.com:Glench/Vim-Jinja2-Syntax.git

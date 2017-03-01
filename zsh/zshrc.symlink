@@ -40,3 +40,6 @@ done
 
 unset config_files
 source $HOME/.dotfiles/zshplugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# added by travis gem
+[ -f /root/.travis/travis.sh ] && source /root/.travis/travis.sh

@@ -326,9 +326,8 @@ ${4:
 
 	def __init__(self, *args, **kwargs):
 		self.mapping = {
-			${3:_("command"): "value",}
+			${3:_("command"): Text("value"),}$0
 			}
-		$0
 		MappingRule.__init__(self, *args, **kwargs)
 endsnippet
 
@@ -342,19 +341,16 @@ ${9:
 	def __init__(self, *args, **kwargs):
 		self.spec = _("${3:command}")
 		self.extras = [
-			${4:Alternative()}
+			${4:Alternative(),}$0
 			]
-		$0
 		CompoundRule.__init__(self, *args, **kwargs)
 
 	def value(self, node):
-		extras = extract_values(node, (
-			${5:SomeRule}), recurse=True)
-		${6:extras = ' '.join(extras)}
-		return ${7:text_to_keystr(extras)}
+		${5:return ${6:Text}(join_actions(' ', extract_values(node, (
+			${7:SomeRule}), recurse=True)))}
 
 	def _process_recognition(self, node, extras):
-		${8:Key(self.value(node)).execute()}
+		${8:self.value(node).execute()}
 endsnippet
 
 snippet choice "dragonfly.Choice" bms
@@ -410,7 +406,7 @@ Dictation(name='${1:identifier}')
 endsnippet
 
 snippet _ "gettext translation key, value pair" bms
-_("${1:translatable}"): "${2:value}",
+_("${1:translatable}"): ${2:Text}("${3:value}"),
 endsnippet
 
 ################
